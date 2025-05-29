@@ -1,0 +1,26 @@
+{
+  "name": "bitespeed-identity",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "ts-node-dev --respawn src/server.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^6.8.2",
+    "@types/express": "^4.17.17",
+    "dotenv": "^16.5.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.24",
+    "prisma": "^6.8.2",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.8.3"
+  },
+  "description": ""
+}
