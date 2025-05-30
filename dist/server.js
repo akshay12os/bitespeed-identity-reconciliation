@@ -196,10 +196,9 @@ app.post("/identify", (req, res) => __awaiter(void 0, void 0, void 0, function* 
     catch (error) {
         console.error("Error during identity reconciliation:", error);
         return res.status(500).json({ error: "Internal server error" });
-    }
-    finally {
-        yield prisma.$disconnect(); // Disconnect Prisma Client after each request
-    }
+    } // finally {
+    //await prisma.$disconnect(); // Disconnect Prisma Client after each request
+    //}
 }));
 // --- CHANGE 5: Listen on dynamic port for deployment ---
 app.listen(port, () => {
