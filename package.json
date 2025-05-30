@@ -5,9 +5,10 @@
 "scripts": {
   "test": "echo \"Error: no test specified\" && exit 1",
   "dev": "ts-node-dev --respawn src/server.ts",
+  "prebuild": "chmod +x ./node_modules/.bin/prisma || true",
   "build": "tsc",
-  "prisma:generate": "node ./node_modules/.bin/prisma generate",
-  "prisma:deploy": "node ./node_modules/.bin/prisma migrate deploy",
+  "prisma:generate": "npx prisma generate",
+  "prisma:deploy": "npx prisma migrate deploy",
   "postbuild": "npm run prisma:generate && npm run prisma:deploy",
   "start": "node dist/server.js"
 }
