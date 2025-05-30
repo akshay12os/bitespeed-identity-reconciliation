@@ -6,7 +6,8 @@
   "test": "echo \"Error: no test specified\" && exit 1",
   "dev": "ts-node-dev --respawn src/server.ts",
   "build": "tsc",
-  "postbuild": "./node_modules/.bin/prisma generate && ./node_modules/.bin/prisma migrate deploy",
+  "postbuild": "npx prisma generate && npx prisma migrate deploy",
+
   "start": "node dist/server.js"
 }
 ,
