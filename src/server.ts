@@ -10,7 +10,9 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(express.json());
-
+app.get("/", (req: Request, res: Response) => {
+  res.status(200).send("API is running!");
+});
 app.post("/identify", async (req: Request, res: Response) => {
   const { email, phoneNumber } = req.body;
 

@@ -21,6 +21,9 @@ const app = (0, express_1.default)();
 // --- CHANGE 1: Use environment variable for port for deployment ---
 const port = process.env.PORT || 3000;
 app.use(express_1.default.json());
+app.get("/", (req, res) => {
+    res.status(200).send("API is running!");
+});
 app.post("/identify", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
     const { email, phoneNumber } = req.body;
