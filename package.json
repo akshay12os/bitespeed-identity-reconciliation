@@ -1,14 +1,14 @@
 {
   "name": "bitespeed-identity",
   "version": "1.0.0",
-  "main":  "dist/server.js", 
+  "main": "dist/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "ts-node-dev --respawn src/server.ts",
-    "build": "tsc" ,
-    "postbuild": "prisma migrate deploy",
-    "start": "node dist/server.js"
-  },
+  "test": "echo \"Error: no test specified\" && exit 1",
+  "dev": "ts-node-dev --respawn src/server.ts",
+  "build": "tsc",
+  "postbuild": "npx prisma generate && npx prisma migrate deploy",
+  "start": "node dist/server.js"
+},
   "keywords": [],
   "author": "",
   "license": "ISC",
