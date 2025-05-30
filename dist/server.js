@@ -23,11 +23,15 @@ const port = process.env.PORT || 3000;
 app.use(express_1.default.json());
 app.post("/identify", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
+    console.log("POST /identify route hit!"); // ADD THIS LOG
+    console.log("Request body:", req.body);
     const { email, phoneNumber } = req.body;
     if (!email && !phoneNumber) {
+        console.log("Validation failed: email or phoneNumber is required"); // ADD THIS LOG
         return res.status(400).json({ error: "Email or phoneNumber is required" });
     }
     try {
+        console.log("Attempting database query...");
         // --- CHANGE 2: Initial query to find all potentially related contacts ---
         // Find contacts that match either the incoming email or phone number.
         // Also consider contacts linked to these, as they might be part of the same chain.
