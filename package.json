@@ -2,12 +2,13 @@
   "name": "bitespeed-identity",
   "version": "1.0.0",
   "main": "dist/server.js",
-  "scripts": {
+"scripts": {
   "test": "echo \"Error: no test specified\" && exit 1",
   "dev": "ts-node-dev --respawn src/server.ts",
   "build": "tsc",
-  "postbuild": "npx prisma generate && npx prisma migrate deploy",
-
+  "prisma:generate": "prisma generate",
+  "prisma:deploy": "prisma migrate deploy",
+  "postbuild": "npm run prisma:generate && npm run prisma:deploy",
   "start": "node dist/server.js"
 }
 ,
