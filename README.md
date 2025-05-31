@@ -1,97 +1,100 @@
-Bitespeed Identity Reconciliation
-Overview
-This project implements the backend service for Bitespeed's identity reconciliation task. It consolidates customer contacts based on email and phone number, ensuring multiple contact entries linked to the same customer are unified under one primary identity.
+# Bitespeed Identity Reconciliation
 
-Inspired by the FluxKart.com use case with Dr. Emmett Brown’s diverse contact info, this service helps track customer identities across multiple orders.
+This project implements an identity reconciliation service for Bitespeed's backend task. It consolidates customer identities using shared emails or phone numbers based on the rules provided in the task.
 
-Features
-POST /identify endpoint to reconcile identities using email and/or phone number.
+## 🌐 Live Demo
 
-Creates new primary contacts when no existing match is found.
+🔗 [https://bitespeed-identity-api-kfkt.onrender.com/identify](https://bitespeed-identity-api-kfkt.onrender.com/identify)
 
-Links secondary contacts to a primary contact when shared email or phone number is detected.
+## 🧰 Tech Stack
 
-Handles merging of contacts, updating link precedence as required.
+- Node.js
+- Express.js
+- PostgreSQL
+- Prisma ORM
+- TypeScript
+- Render (for deployment)
 
-Returns a consolidated JSON response including:
+---
 
-primaryContactId
+## 📦 Installation
 
-emails (with primary contact email first)
+1. **Clone the repository**
 
-phoneNumbers (with primary contact phone first)
-
-secondaryContactIds array
-
-Tech Stack
-Node.js with TypeScript
-
-Express.js for REST API
-
-Prisma ORM
-
-PostgreSQL database
-
-Setup & Deployment
-Clone the repository:
-
-bash
-Copy
-Edit
+```bash
 git clone https://github.com/akshay12os/bitespeed-identity-reconciliation.git
 cd bitespeed-identity-reconciliation
-Install dependencies:
 
-nginx
-Copy
-Edit
+2.Install Dependencies
 npm install
-Create a .env file and set your database URL:
+Setup environment variables
 
-ini
-Copy
-Edit
-DATABASE_URL="your_postgres_connection_string_here"
-PORT=10000
-Run database migrations:
+Create a .env file:
 
-nginx
-Copy
-Edit
-npx prisma migrate deploy
-Start the server:
+DATABASE_URL=postgresql://<username>:<password>@<host>:<port>/<db_name>
 
-arduino
-Copy
-Edit
-npm run start
-The API will be running on http://localhost:10000
+Prisma setup
 
-Usage
-Send a POST request to /identify with JSON body:
+npx prisma generate
+npx prisma migrate dev --name init
 
+
+Run locally
+
+npm run dev
+
+
+📬 API Endpoint
+POST /identify
+Used to identify and consolidate user contact information based on shared email or phone number.
+
+Request Body
 json
-Copy
-Edit
+
 {
-  "email": "example@domain.com",
-  "phoneNumber": "1234567890"
+  "email": "mcfly@hillvalley.edu",
+  "phoneNumber": "123456"
 }
-Example response:
-
+Response Format
 json
-Copy
-Edit
+
 {
   "contact": {
     "primaryContactId": 1,
-    "emails": ["primary@example.com", "secondary@example.com"],
-    "phoneNumbers": ["1234567890", "0987654321"],
-    "secondaryContactIds": [2, 3]
+    "emails": [
+      "lorraine@hillvalley.edu",
+      "mcfly@hillvalley.edu"
+    ],
+    "phoneNumbers": [
+      "123456"
+    ],
+    "secondaryContactIds": [23]
   }
 }
-Live Endpoint
-The service is deployed at:
+📄 Project Structure
 
-https://bitespeed-id-reconciliation.onrender.com
 
+.
+├── src/
+│   ├── index.ts         # Entry point
+│   ├── routes/          # Route handlers
+│   ├── services/        # Logic for reconciliation
+│   └── prisma/          # Prisma client
+├── prisma/
+│   └── schema.prisma    # Data model
+├── .env
+└── README.md
+🧪 Testing
+Use Postman or curl to send a POST request to:
+
+
+
+https://bitespeed-identity-api-kfkt.onrender.com/identify
+With body:
+
+json
+
+{
+  "email": "example@example.com",
+  "phoneNumber": "9876543210"
+}
